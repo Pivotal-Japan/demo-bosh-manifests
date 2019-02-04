@@ -14,7 +14,7 @@ To retrieve credentials from crehub, you need to create the client by manual.
 See also [doc](https://community.pivotal.io/s/article/How-to-Access-CredHub-with-the-CredHub-CLI).
 
 ```
-./p-bosh-uaac-token-client-get.sh 
+./uaac-token-client-get-p-bosh.sh
 ./uaac-create-client-credhub-cli.sh
 ```
 
