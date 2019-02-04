@@ -1,0 +1,6 @@
+[submodule "concourse-bosh-deployment"]
+	path = concourse-bosh-deployment
+	url = https://github.com/concourse/concourse-bosh-deployment.git
+[submodule "prometheus-boshrelease"]
+	path = prometheus-boshrelease
+	url = https://github.com/bosh-prometheus/prometheus-boshrelease.git
