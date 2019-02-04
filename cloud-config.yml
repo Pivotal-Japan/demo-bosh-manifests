@@ -11,7 +11,8 @@ networks:
     range: 10.0.8.0/24
     reserved:
     - 10.0.8.0-10.0.8.128 # reserved for pas-service-network
-    static: []
+    static:
+    - 10.0.8.200-10.0.8.250
   - azs:
     - ap-northeast-1d
     cloud_properties:
@@ -35,3 +36,9 @@ networks:
     - 10.0.10.0-10.0.10.128  # reserved for pas-service-network
     static: []
   type: manual
+vm_extensions:
+- name: 100GB_ephemeral_disk
+  cloud_properties:
+    ephemeral_disk:
+      size: 102400
+      type: gp2
