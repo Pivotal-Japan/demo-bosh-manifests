@@ -40,3 +40,35 @@ Get the concourse admin password
 ```
 credhub get -n /p-bosh/concourse/concourse_admin_password
 ```
+
+## Deploy Prometheus
+
+Create bosh exporter UAA client
+
+```
+./uaac-token-client-get-p-bosh.sh
+./uaac-create-client-bosh-exporter.sh
+```
+
+Create cf exporter and firehose exporter UAA clients
+
+```
+./uaac-token-client-get-pas.sh
+./uaac-create-client-cf-exporter.sh
+./uaac-create-client-firehose-exporter.sh
+```
+
+
+then 
+
+```
+./deploy-prometheus.sh
+```
+
+```
+./credhub-login.sh
+
+credhub get -n /p-bosh/prometheus/grafana_password
+credhub get -n /p-bosh/prometheus/prometheus_password
+credhub get -n /p-bosh/prometheus/alertmanager_password
+```
