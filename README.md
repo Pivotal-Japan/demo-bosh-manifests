@@ -9,8 +9,8 @@ For a production environment, I'd highly recommend to have a dedicated network f
 
 ## Create an UAA client for credhub cli
 
-p-bosh does not have an uaa client for credhub cli by default. 
-To retrieve credentials from crehub, you need to create the client by manual.
+`p-bosh` does not have an uaa client for credhub cli by default. 
+To retrieve credentials from credhub, you need to create a client by manual.
 
 See also [doc](https://community.pivotal.io/s/article/How-to-Access-CredHub-with-the-CredHub-CLI).
 
@@ -19,7 +19,7 @@ See also [doc](https://community.pivotal.io/s/article/How-to-Access-CredHub-with
 ./uaac-create-client-credhub-cli.sh
 ```
 
-Login to Credhub on p-bosh
+Login to Credhub on `p-bosh`
 
 
 ```
@@ -34,7 +34,7 @@ Login to Credhub on p-bosh
 ```
 
 
-Get concourse admin password
+Get the concourse admin password
 
 
 ```
