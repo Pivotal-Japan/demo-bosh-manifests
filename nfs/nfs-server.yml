@@ -1,0 +1,31 @@
+---
+name: nfs-server
+
+releases:
+- name: nfs-volume
+  version: latest
+
+stemcells:
+- os: ubuntu-xenial
+  alias: xenial
+  version: latest
+
+instance_groups:
+- name: nfs-server
+  jobs:
+  - name: nfstestserver
+    release: nfs-volume
+    properties: {}
+  instances: 1
+  stemcell: xenial
+  azs: [((nfs-server-az))]
+  vm_type: ((nfs-server-vm-type))
+  networks:
+  - name: ((nfs-server-network))
+    static_ips: ((nfs-server-ip))
+  persistent_disk: ((nfs-server-disk))
+update:
+  canaries: 1
+  max_in_flight: 3
+  canary_watch_time: 30000-600000
+  update_watch_time: 5000-600000

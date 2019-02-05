@@ -1,0 +1,9 @@
+#!/bin/bash
+
+bosh -d nfs-server deploy nfs-server.yml \
+  -v nfs-server-ip=10.0.8.230 \
+  -v nfs-server-az=ap-northeast-1a \
+  -v nfs-server-network=bosh \
+  -v nfs-server-vm-type=t2.micro \
+  -v nfs-server-disk=1024 \
+  --no-redact
