@@ -1,5 +1,6 @@
 ```
 git clone --recursive https://github.com/Pivotal-Japan/demo-bosh-manifests.git
+cd demo-bosh-manifests
 ```
 
 
