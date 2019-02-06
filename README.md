@@ -1,3 +1,11 @@
+## Provision an ALB
+
+```
+terraform init terraform/aws/
+terraform plan -out plan terraform/aws/
+terraform apply plan
+```
+
 ## Define a network for bosh deployments (non tiles)
 
 ```
@@ -27,6 +35,11 @@ Login to Credhub on `p-bosh`
 ```
 
 ## Deploy Concourse
+
+```
+./uaac-token-client-get-p-bosh.sh
+./uaac-create-client-concourse-sky.sh
+```
 
 
 ```

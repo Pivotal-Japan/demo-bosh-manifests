@@ -1,0 +1,6 @@
+.terraform
+terraform.tfvars
+plan
+terraform.tfstate
+terraform.tfstate.backup
+*-additional-policy.json

@@ -1,0 +1,16 @@
+prefix             = "kabu"
+access_key         = "aaaaaaaaaaaaaaaaaaa"
+secret_key         = "xxxxxxxxxxxxxxxxxxx"
+region             = "ap-northeast-1"
+public_subnet_ids  = ["subnet-xxxxxxxx","subnet-yyyyyyy","subnet-zzzzzzz"]
+vpc_id             = "vpc-xxxxxxxxxxxxxxxx"
+base_domain        = "sys.pas.ik.am"
+tls_cert           = <<EOF
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+EOF
+tls_private_key    = <<EOF
+...
+EOF
+
