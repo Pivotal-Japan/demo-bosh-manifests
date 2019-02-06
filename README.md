@@ -1,3 +1,8 @@
+```
+git clone --recursive https://github.com/Pivotal-Japan/demo-bosh-manifests.git
+```
+
+
 ## Provision an ALB
 
 ```
