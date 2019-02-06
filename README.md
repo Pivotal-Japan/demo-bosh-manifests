@@ -28,6 +28,11 @@ Login to Credhub on `p-bosh`
 
 ## Deploy Concourse
 
+```
+./uaac-token-client-get-p-bosh.sh
+./uaac-create-client-concourse-sky.sh
+```
+
 
 ```
 ./deploy-concourse.sh
