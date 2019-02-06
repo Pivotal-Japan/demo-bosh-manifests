@@ -21,6 +21,7 @@ bosh deploy -d concourse concourse-bosh-deployment/cluster/concourse.yml \
   -o concourse-bosh-deployment/cluster/operations/tls-port.yml \
   -o concourse-bosh-deployment/cluster/operations/prometheus.yml \
   -o concourse-bosh-deployment/cluster/operations/cf-auth.yml \
+  -o concourse-bosh-deployment/cluster/operations/add-main-team-cf-users.yml \
   -v local_user.username=admin \
   -v local_user.password="((concourse_admin_password))" \
   -v external_url=https://concourse.sys.pas.ik.am \
@@ -40,6 +41,7 @@ bosh deploy -d concourse concourse-bosh-deployment/cluster/concourse.yml \
   -v cf_client_id=concourse_sky \
   -v cf_client_secret="${BOSH_CLIENT_SECRET}" \
   --var-file cf_ca_cert=<(openssl s_client -showcerts -connect api.${system_domain}:443 </dev/null 2>/dev/null | openssl x509 -outform PEM) \
+  -v main_team_cf_users='["admin"]' \
   -o <(cat <<EOF
 # custom ops-files
 - type: replace
