@@ -20,6 +20,7 @@ bosh deploy -d prometheus prometheus-boshrelease/manifests/prometheus.yml  \
   -o prometheus-boshrelease/manifests/operators/enable-bosh-uaa.yml \
   -o prometheus-boshrelease/manifests/operators/monitor-node.yml \
   -o prometheus-boshrelease/manifests/operators/monitor-cf.yml \
+  -o prometheus-boshrelease/manifests/operators/monitor-concourse.yml \
   -o prometheus-boshrelease/manifests/operators/nginx-vm-extension.yml \
   -o ops-files/prometheus-colocate-firehose_exporter.yml \
   -v metrics_environment=p-bosh \

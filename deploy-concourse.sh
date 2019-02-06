@@ -6,6 +6,7 @@ bosh deploy -d concourse concourse-bosh-deployment/cluster/concourse.yml \
   -o concourse-bosh-deployment/cluster/operations/basic-auth.yml \
   -o concourse-bosh-deployment/cluster/operations/worker-ephemeral-disk.yml \
   -o concourse-bosh-deployment/cluster/operations/tls-port.yml \
+  -o concourse-bosh-deployment/cluster/operations/prometheus.yml \
   -v local_user.username=admin \
   -v local_user.password="((concourse_admin_password))" \
   -v external_url=https://concourse.sys.pas.ik.am \
@@ -20,6 +21,7 @@ bosh deploy -d concourse concourse-bosh-deployment/cluster/concourse.yml \
   -v atc_tls.bind_port=443 \
   -v external_host=concourse.sys.pas.ik.am \
   -v web_network_vm_extension=concourse-alb \
+  -v prometheus_port=9391 \
   -o <(cat <<EOF
 # custom ops-files
 - type: replace
