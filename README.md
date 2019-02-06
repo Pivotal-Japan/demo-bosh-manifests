@@ -91,3 +91,21 @@ credhub get -n /p-bosh/prometheus/grafana_password
 credhub get -n /p-bosh/prometheus/prometheus_password
 credhub get -n /p-bosh/prometheus/alertmanager_password
 ```
+
+## Deploy Elastic Stack
+
+
+```
+./deploy-elastic-stack.sh
+```
+
+
+```
+./credhub-login.sh
+
+credhub get -n /p-bosh/elastic-stack/kibana_password
+credhub get -n /p-bosh/elastic-stack/elasticsearch_password
+
+# TLS CA Certificate for Logstash
+credhub get -n /p-bosh/elastic-stack/logstash_tls | bosh int - --path /value/ca
+```

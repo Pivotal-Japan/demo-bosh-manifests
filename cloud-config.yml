@@ -52,3 +52,12 @@ vm_extensions:
   cloud_properties:
     lb_target_groups:
     - kabu-concourse
+- name: kibana-lb
+  cloud_properties:
+    lb_target_groups:
+    - kabu-kibana
+- name: elasticsearch-lb
+  cloud_properties:
+    lb_target_groups:
+    - kabu-elasticsearch
+
