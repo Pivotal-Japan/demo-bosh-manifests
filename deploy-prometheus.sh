@@ -20,6 +20,7 @@ bosh deploy -d prometheus prometheus-boshrelease/manifests/prometheus.yml  \
   -o prometheus-boshrelease/manifests/operators/enable-bosh-uaa.yml \
   -o prometheus-boshrelease/manifests/operators/monitor-node.yml \
   -o prometheus-boshrelease/manifests/operators/monitor-cf.yml \
+  -o prometheus-boshrelease/manifests/operators/nginx-vm-extension.yml \
   -o ops-files/prometheus-colocate-firehose_exporter.yml \
   -v metrics_environment=p-bosh \
   -v bosh_url=${BOSH_ENVIRONMENT} \
@@ -31,6 +32,7 @@ bosh deploy -d prometheus prometheus-boshrelease/manifests/prometheus.yml  \
   -v uaa_clients_firehose_exporter_secret=${BOSH_CLIENT_SECRET} \
   -v traffic_controller_external_port=4443 \
   -v skip_ssl_verify=true \
+  -v nginx_vm_extension=prometheus-alb \
   -o <(cat <<EOF
 # az
 - type: replace
@@ -82,13 +84,5 @@ bosh deploy -d prometheus prometheus-boshrelease/manifests/prometheus.yml  \
 - type: replace
   path: /instance_groups/name=nginx/vm_type
   value: t2.micro
-
-# temporary
-
-- type: replace
-  path: /instance_groups/name=nginx/networks/0/static_ips?
-  value: 
-  - 10.0.8.201
-
 EOF) \
   --no-redact

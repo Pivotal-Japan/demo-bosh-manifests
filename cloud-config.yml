@@ -42,3 +42,13 @@ vm_extensions:
     ephemeral_disk:
       size: 102400
       type: gp2
+- name: prometheus-alb
+  cloud_properties:
+    lb_target_groups: 
+    - kabu-prometheus
+    - kabu-grafana
+    - kabu-alertmanager
+- name: concourse-alb
+  cloud_properties:
+    lb_target_groups:
+    - kabu-concourse
