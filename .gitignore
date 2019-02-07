@@ -4,3 +4,5 @@ plan
 terraform.tfstate
 terraform.tfstate.backup
 *-additional-policy.json
+firehose-to-syslog_linux_amd64
+*.pem
