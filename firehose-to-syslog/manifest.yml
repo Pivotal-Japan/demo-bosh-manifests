@@ -1,0 +1,23 @@
+applications:
+- name: firehose-to-syslog
+  memory: 256m
+  buildpack: binary_buildpack
+  command: ./firehose-to-syslog_linux_amd64
+  routes:
+  - route: firehose-to-syslog.((system_domain))
+  env:
+    API_ENDPOINT: https://api.((system_domain))
+    DEBUG: false
+    DOPPLER_ENDPOINT: wss://doppler.((system_domain)):((doppler_port))
+    EVENTS: LogMessage,Error,HttpStartStop
+    FIREHOSE_CLIENT_ID: firehose-to-syslog
+    FIREHOSE_CLIENT_SECRET: ((client_secret))
+    FIREHOSE_SUBSCRIPTION_ID: firehose-to-syslog
+    LOG_EVENT_TOTALS: true
+    LOG_EVENT_TOTALS_TIME: 10s
+    SKIP_SSL_VALIDATION: true
+    SYSLOG_ENDPOINT: ((logstash_ip)):5514
+    SYSLOG_PROTOCOL: tcp+tls
+    CERT_PEM: logstash_ca.pem
+    ENABLE_STATS_SERVER: true
+    CF_PULL_TIME: 120s
