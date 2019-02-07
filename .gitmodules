@@ -4,3 +4,6 @@
 [submodule "prometheus-boshrelease"]
 	path = prometheus-boshrelease
 	url = https://github.com/bosh-prometheus/prometheus-boshrelease.git
+[submodule "elastic-stack-bosh-deployment"]
+	path = elastic-stack-bosh-deployment
+	url = https://github.com/bosh-elastic-stack/elastic-stack-bosh-deployment.git
