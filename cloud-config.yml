@@ -60,4 +60,7 @@ vm_extensions:
   cloud_properties:
     lb_target_groups:
     - kabu-elasticsearch
-
+- name: zipkin-lb
+  cloud_properties:
+    lb_target_groups:
+    - kabu-zipkin

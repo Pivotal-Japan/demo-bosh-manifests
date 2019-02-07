@@ -7,3 +7,6 @@
 [submodule "elastic-stack-bosh-deployment"]
 	path = elastic-stack-bosh-deployment
 	url = https://github.com/bosh-elastic-stack/elastic-stack-bosh-deployment.git
+[submodule "zipkin-boshrelease"]
+	path = zipkin-boshrelease
+	url = git@github.com:making/zipkin-boshrelease.git

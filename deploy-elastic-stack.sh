@@ -17,6 +17,7 @@ bosh -d elastic-stack deploy ./elastic-stack-bosh-deployment/elastic-stack.yml \
      -o ./elastic-stack-bosh-deployment/ops-files/kibana-elasticsearch-https.yml \
      -o ./elastic-stack-bosh-deployment/ops-files/kibana-elasticsearch-basic-auth.yml \
      -o ./elastic-stack-bosh-deployment/ops-files/kibana-add-lb.yml \
+     -o ./elastic-stack-bosh-deployment/ops-files/elasticsearch-share-link.yml \
      --var-file logstash.conf=logstash.conf \
      -v elasticsearch_master_instances=1 \
      -v elasticsearch_master_vm_type=m4.large \

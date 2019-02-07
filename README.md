@@ -138,3 +138,10 @@ cf push \
   --var doppler_port=4443
 cd ..
 ```
+
+## Deploy Zipkin
+
+
+```
+./deploy-zipkin.sh
+```
