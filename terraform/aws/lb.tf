@@ -120,7 +120,6 @@ resource "aws_lb_target_group" "alertmanager" {
   }
 }
 
-
 resource "aws_lb_target_group" "concourse" {
   name     = "${var.prefix}-concourse"
   port     = "443"
@@ -131,6 +130,40 @@ resource "aws_lb_target_group" "concourse" {
     path = "/"
     port = 443
     matcher = "200"
+    healthy_threshold   = 6
+    unhealthy_threshold = 3
+    timeout             = 3
+    interval            = 5
+  }
+}
+
+resource "aws_lb_target_group" "elasticsearch" {
+  name     = "${var.prefix}-elasticsearch"
+  port     = "443"
+  protocol = "HTTPS"
+  vpc_id   = "${var.vpc_id}"
+  health_check {
+    protocol = "HTTPS"
+    path = "/"
+    port = 443
+    matcher = "401"
+    healthy_threshold   = 6
+    unhealthy_threshold = 3
+    timeout             = 3
+    interval            = 5
+  }
+}
+
+resource "aws_lb_target_group" "kibana" {
+  name     = "${var.prefix}-kibana"
+  port     = "443"
+  protocol = "HTTPS"
+  vpc_id   = "${var.vpc_id}"
+  health_check {
+    protocol = "HTTPS"
+    path = "/"
+    port = 443
+    matcher = "401"
     healthy_threshold   = 6
     unhealthy_threshold = 3
     timeout             = 3
@@ -190,6 +223,32 @@ resource "aws_lb_listener_rule" "concourse" {
   }
 }
 
+resource "aws_lb_listener_rule" "elasticsearch" {
+  listener_arn = "${aws_lb_listener.bosh-lb.arn}"
+  priority     = 27
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.elasticsearch.arn}"
+  }
+  condition {
+    field  = "host-header"
+    values = ["elasticsearch.${var.base_domain}"]
+  }
+}
+
+resource "aws_lb_listener_rule" "kibana" {
+  listener_arn = "${aws_lb_listener.bosh-lb.arn}"
+  priority     = 26
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.kibana.arn}"
+  }
+  condition {
+    field  = "host-header"
+    values = ["kibana.${var.base_domain}"]
+  }
+}
+
 resource "aws_security_group" "bosh-lb" {
   name   = "${var.prefix}-bosh-lb"
   vpc_id = "${var.vpc_id}"
@@ -238,6 +297,10 @@ output "alertnamager_hostname" {
   value = "alertmanager.${var.base_domain}"
 }
 
-output "concourse_hostname" {
-  value = "concourse.${var.base_domain}"
+output "kibana_hostname" {
+  value = "kibana.${var.base_domain}"
+}
+
+output "elasticsearch_hostname" {
+  value = "elasticsearch.${var.base_domain}"
 }
