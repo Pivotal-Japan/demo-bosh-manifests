@@ -171,6 +171,23 @@ resource "aws_lb_target_group" "kibana" {
   }
 }
 
+resource "aws_lb_target_group" "zipkin" {
+  name     = "${var.prefix}-zipkin"
+  port     = "9411"
+  protocol = "HTTP"
+  vpc_id   = "${var.vpc_id}"
+  health_check {
+    protocol = "HTTP"
+    path = "/actuator/health"
+    port = 9411
+    matcher = "200"
+    healthy_threshold   = 6
+    unhealthy_threshold = 3
+    timeout             = 3
+    interval            = 5
+  }
+}
+
 resource "aws_lb_listener_rule" "prometheus" {
   listener_arn = "${aws_lb_listener.bosh-lb.arn}"
   priority     = 30
@@ -249,6 +266,19 @@ resource "aws_lb_listener_rule" "kibana" {
   }
 }
 
+resource "aws_lb_listener_rule" "zipkin" {
+  listener_arn = "${aws_lb_listener.bosh-lb.arn}"
+  priority     = 24
+  action {
+    type             = "forward"
+    target_group_arn = "${aws_lb_target_group.zipkin.arn}"
+  }
+  condition {
+    field  = "host-header"
+    values = ["zipkin.${var.base_domain}"]
+  }
+}
+
 resource "aws_security_group" "bosh-lb" {
   name   = "${var.prefix}-bosh-lb"
   vpc_id = "${var.vpc_id}"
@@ -303,4 +333,8 @@ output "kibana_hostname" {
 
 output "elasticsearch_hostname" {
   value = "elasticsearch.${var.base_domain}"
+}
+
+output "zipkin_hostname" {
+  value = "zipkin.${var.base_domain}"
 }
