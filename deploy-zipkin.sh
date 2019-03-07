@@ -3,7 +3,6 @@
 bosh -d zipkin deploy zipkin-boshrelease/manifest/zipkin.yml \
   -l zipkin-boshrelease/manifest/versions.yml \
   -o zipkin-boshrelease/manifest/ops-files/consume-elasticsearch-from-different-deployment.yml \
-  -o zipkin-boshrelease/manifest/ops-files/zipkin-lens.yml \
   -o zipkin-boshrelease/manifest/ops-files/zipkin-add-lb.yml \
   -o zipkin-boshrelease/manifest/ops-files/aggregate-dependencies-elasticsearch.yml \
   -v elasticsearch-from=elasticsearch-master \
