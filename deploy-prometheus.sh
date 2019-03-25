@@ -27,7 +27,7 @@ bosh deploy -d prometheus prometheus-boshrelease/manifests/prometheus.yml  \
   -v bosh_url=${BOSH_ENVIRONMENT} \
   --var-file bosh_ca_cert=${BOSH_CA_CERT} \
   -v uaa_bosh_exporter_client_secret=${BOSH_CLIENT_SECRET} \
-  -v metron_deployment_name=cf \
+  -v metron_deployment_name=$(bosh deployments | grep -e '^cf' | awk '{print $1}') \
   -v system_domain=${system_domain} \
   -v uaa_clients_cf_exporter_secret=${BOSH_CLIENT_SECRET} \
   -v uaa_clients_firehose_exporter_secret=${BOSH_CLIENT_SECRET} \
